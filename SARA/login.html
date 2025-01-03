@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .login-container {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+      h2 {
+        color: #333;
+        margin-bottom: 1rem;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      form input {
+        padding: 0.8rem;
+        margin: 0.5rem 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      form button {
+        padding: 0.8rem;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 1rem;
+      }
+
+      form button:hover {
+        background-color: #45a049;
+      }
+
+      .error-message {
+        color: red;
+        margin-top: 1rem;
+        display: none;
+      }
+
+      .register-link {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .register-link a {
+        color: #4caf50;
+        text-decoration: none;
+      }
+
+      .register-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Iniciar Sesión</h2>
+      <form id="loginForm">
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Usuario"
+          required
+        />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Contraseña"
+          required
+        />
+        <button type="submit">Ingresar</button>
+        <p class="error-message" id="errorMessage">
+          Usuario o contraseña incorrectos.
+        </p>
+      </form>
+      <div class="register-link">
+        ¿No tienes cuenta? <a href="register.html">Regístrate aquí</a>
+      </div>
+    </div>
+
+    <script>
+      // Simulación de usuarios registrados
+      const usuarios = [
+        { username: "admin", password: "1234" },
+        { username: "usuario", password: "abcd" },
+      ];
+
+      // Validación del formulario
+      const form = document.getElementById("loginForm");
+      const errorMessage = document.getElementById("errorMessage");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        const usuarioValido = usuarios.find(
+          (user) => user.username === username && user.password === password
+        );
+
+        if (usuarioValido) {
+          alert("Inicio de sesión exitoso. Bienvenido " + username + "!");
+          window.location.href = "index.html"; // Redirige al sistema principal
+        } else {
+          errorMessage.style.display = "block";
+        }
+      });
+    </script>
+  </body>
+</html>
